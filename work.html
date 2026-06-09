@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Work · Cristian Villada — Data Science at Etihad Pilot Training</title>
+<meta name="description" content="Data science and engineering for Etihad Airways pilot training — EBT analytics, predictive ML, full-stack platforms, NLP and compliance automation. Case-study overviews only; no proprietary data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#0a0d12;--bg-panel:#11151c;--bg-card:#161b24;--bg-elev:#1d2330;
+  --line:#232a39;--line-soft:#1a2030;--ink:#e8ecf2;--ink-dim:#8a93a6;--ink-mute:#5a6478;
+  --copper:#d97f4a;--gold:#e8b94a;--teal:#4fb8a8;--crimson:#e54e4e;--purple:#a78bfa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--ink);font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;min-height:100vh}
+.shell{max-width:1160px;margin:0 auto;padding:0 32px}
+a{text-decoration:none;color:inherit}
+
+nav{border-bottom:1px solid var(--line);background:rgba(10,13,18,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:0 32px;height:56px;max-width:1160px;margin:0 auto}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-dim)}
+.nav-logo span{color:var(--copper)}
+.nav-links{display:flex;gap:28px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase}
+.nav-links a{color:var(--ink-mute);transition:color 0.15s}
+.nav-links a:hover,.nav-links a.active{color:var(--copper)}
+
+/* HERO */
+.hero{padding:88px 0 56px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 50% at 5% 0%,rgba(167,139,250,0.08) 0%,transparent 100%),radial-gradient(ellipse 50% 60% at 95% 100%,rgba(79,184,168,0.07) 0%,transparent 100%)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:18px;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(46px,6.5vw,88px);line-height:0.92;letter-spacing:-0.04em;position:relative}
+.hero h1 em{font-style:italic;color:var(--purple);font-weight:300}
+.hero-sub{font-size:16px;color:var(--ink-dim);max-width:620px;margin-top:24px;line-height:1.72;position:relative}
+.hero-sub strong{color:var(--ink);font-weight:500}
+.conf-pill{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:9px 15px;border:1px solid var(--line);background:var(--bg-panel);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--ink-dim);position:relative}
+.conf-pill b{color:var(--gold);font-weight:600}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-panel)}
+.stat-cell{padding:20px 24px;border-right:1px solid var(--line)}
+.stat-cell:last-child{border-right:none}
+.stat-n{font-family:'Fraunces',serif;font-size:28px;font-weight:600;line-height:1;letter-spacing:-0.02em;font-style:italic;color:var(--purple)}
+.stat-l{margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute)}
+
+/* PILLARS */
+.pillar{padding:54px 0 8px}
+.pillar-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.pillar-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600}
+.pillar-rule{flex:1;height:1px;background:var(--line)}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+.case-card{background:var(--bg-card);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.case-accent{height:3px;width:100%}
+.case-body{padding:26px 26px 22px;flex:1;display:flex;flex-direction:column}
+.case-status{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:14px}
+.case-status .lock{color:var(--gold)}
+.case-title{font-family:'Fraunces',serif;font-size:23px;font-weight:600;letter-spacing:-0.02em;line-height:1.12;margin-bottom:16px}
+.case-rows{display:flex;flex-direction:column;gap:10px;flex:1}
+.cr{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:start}
+.crk{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute);padding-top:2px}
+.crv{font-size:13.5px;color:var(--ink-dim);line-height:1.6}
+.crv b{color:var(--ink);font-weight:500}
+.case-scale{margin-top:16px;padding-top:13px;border-top:1px solid var(--line-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.05em;color:var(--teal)}
+.case-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);color:var(--ink-mute)}
+/* schematic flow */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.flow span{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.04em;color:var(--ink-dim);background:var(--bg-elev);border:1px solid var(--line);padding:4px 8px}
+.flow i{color:var(--ink-mute);font-style:normal}
+
+/* DISCLAIMER / FOOTER */
+.disclaimer-wrap{padding:40px 0 8px}
+.disclaimer{background:var(--bg-card);border:1px solid var(--line);border-left:3px solid var(--gold);padding:18px 22px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:var(--ink-mute);line-height:1.8;max-width:880px}
+.disclaimer strong{color:var(--gold);letter-spacing:0.1em}
+footer{padding:40px 0 52px;color:var(--ink-mute);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;border-top:1px solid var(--line);margin-top:32px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer em{font-family:'Fraunces',serif;font-style:italic;color:var(--copper)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:var(--ink-mute);transition:color 0.15s}
+.footer-links a:hover{color:var(--teal)}
+
+@media(max-width:860px){
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(3){border-top:1px solid var(--line)}
+  .stat-cell:nth-child(4){border-top:1px solid var(--line);border-right:none}
+  .case-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){.shell{padding:0 20px}.nav-inner{padding:0 20px}.hero{padding:60px 0 44px}.footer-inner{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><span>C</span>RISTIAN · <span>V</span>ILLADA</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#projects">Projects</a>
+      <a href="/work.html" class="active">Work</a>
+      <a href="mailto:cristian.villadat@gmail.com">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="shell">
+    <div class="eyebrow">Data Science · Etihad Airways Pilot Training</div>
+    <h1>Professional <em>Work.</em></h1>
+    <p class="hero-sub">
+      Turning <strong>training operations data into decisions</strong> at Etihad Airways pilot training —
+      from EBT/SBT analytics and predictive ML to full-stack platforms, NLP and compliance automation,
+      across a fleet of 106+ aircraft. These are <strong>case-study overviews</strong> of internal work.
+    </p>
+    <div class="conf-pill"><span>🔒</span> <b>Overview &amp; methodology only</b>&nbsp;— no proprietary data, systems, or pilot information shown</div>
+  </div>
+</section>
+
+<!-- STATS (scale only) -->
+<div class="stat-row">
+  <div class="stat-cell"><div class="stat-n">544</div><div class="stat-l">Pilots analysed</div></div>
+  <div class="stat-cell"><div class="stat-n">15,351</div><div class="stat-l">Training records modelled</div></div>
+  <div class="stat-cell"><div class="stat-n">8</div><div class="stat-l">Internal tools built</div></div>
+  <div class="stat-cell"><div class="stat-n">32</div><div class="stat-l">Table TMS Oracle schema</div></div>
+</div>
+
+<main class="shell">
+
+  <!-- PILLAR 1 -->
+  <section class="pillar">
+    <div class="pillar-head"><span class="pillar-tag" style="color:var(--teal)">01 · Training Analytics</span><span class="pillar-rule"></span></div>
+    <div class="case-grid">
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--teal)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Production · internal</div>
+          <div class="case-title">TMS KPI Pipeline</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">New-Joiner training outcomes were known only retrospectively, scattered across raw Oracle TMS exports.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">A Python pipeline over the TMS Oracle schema that computes training KPIs on a rolling 24-month window and renders VP-level HTML + Excel dashboards, with root causes mapped to ICAO competency codes.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">Turned ad-hoc exports into a <b>repeatable management reporting pipeline</b> with root-cause analysis across the New-Joiner cohort.</span></div>
+          </div>
+          <div class="case-scale">544 pilots · 15,351 records · 24-month rolling window</div>
+          <div class="case-chips"><span class="chip">Python</span><span class="chip">Oracle</span><span class="chip">pandas</span><span class="chip">Power BI</span></div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--teal)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Production · internal</div>
+          <div class="case-title">EBT Analytics — IRR &amp; Taxonomy</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Instructor grading consistency was hard to measure, and debrief data wasn't machine-readable against competencies.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">A JSON taxonomy mapping task rows to the 9 ICAO competency codes, with inter-rater reliability measured by <b>Gwet AC1</b> (chosen over Cohen's kappa to avoid the kappa paradox); AC1 below threshold auto-flags calibration.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">Made instructor consistency <b>measurable and auditable</b>, with calibration flags built into VP dashboards and GCAA audit prep.</span></div>
+          </div>
+          <div class="case-scale">9 ICAO competencies · Gwet AC1 · ICAP controlled event</div>
+          <div class="case-chips"><span class="chip">Python</span><span class="chip">Statistics</span><span class="chip">ICAO EBT</span><span class="chip">IRR</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PILLAR 2 -->
+  <section class="pillar">
+    <div class="pillar-head"><span class="pillar-tag" style="color:var(--purple)">02 · Predictive &amp; Adaptive</span><span class="pillar-rule"></span></div>
+    <div class="case-grid">
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--purple)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Research</div>
+          <div class="case-title">Predictive Training</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Training risk is only visible after a check — too late to intervene.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">An ML pipeline that forecasts at-risk pilots before events — logistic baseline → gradient-boosted trees → sequence models — on engineered competency-trajectory, recency and fleet-history features.</span></div>
+            <div class="cr"><span class="crk">Schematic</span><span class="crv"><span class="flow"><span>Oracle TMS</span><i>→</i><span>feature pipeline</span><i>→</i><span>model</span><i>→</i><span>risk dashboard</span></span></span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">Shifts the organisation from <b>retrospective to proactive</b> — early, targeted instructor intervention.</span></div>
+          </div>
+          <div class="case-scale">scikit-learn baseline → XGBoost → sequence models</div>
+          <div class="case-chips"><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">FastAPI</span><span class="chip">Feature eng.</span></div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--purple)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Design</div>
+          <div class="case-title">Adaptive Training Lifecycle</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Fixed annual/biannual EBT cycles train a steady high-performer and an at-risk pilot identically.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">A lifecycle decision engine that adjusts training frequency and content from performance signals and predictive risk; triggers include score decline, competency gaps, recency and fleet transition. Rule-based v1, GCAA-aligned.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">Replaces calendar-driven training with <b>performance-indexed cadence</b> — more touchpoints where they matter.</span></div>
+          </div>
+          <div class="case-scale">Rule-based engine · feeds the EBT Platform</div>
+          <div class="case-chips"><span class="chip">Rules engine</span><span class="chip">EBT</span><span class="chip">Regulatory</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PILLAR 3 -->
+  <section class="pillar">
+    <div class="pillar-head"><span class="pillar-tag" style="color:var(--copper)">03 · Platforms &amp; Engineering</span><span class="pillar-rule"></span></div>
+    <div class="case-grid">
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--copper)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Production-oriented · internal</div>
+          <div class="case-title">EBT Platform</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Competency-based assessment needs a real system — not spreadsheets and PDFs.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">A full-stack platform: React + Vite + Tailwind (TypeScript) front end, FastAPI + Alembic back end, Dockerised with GitHub Actions CI — a scenario subsystem wired to a regulatory compliance engine.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">The intended <b>host application</b> for analytics, training recommendations, document management and the adaptive lifecycle view.</span></div>
+          </div>
+          <div class="case-scale">React + FastAPI · Docker · CI · compliance engine</div>
+          <div class="case-chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Docker</span><span class="chip">CI/CD</span></div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--copper)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Design</div>
+          <div class="case-title">Technical Writing Platform</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Training content — SOPs, scenarios, OCC/STC docs — lives in scattered Word/PDF/SharePoint with no version control or competency linking.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">A docs-as-code authoring model: Markdown + metadata, version control, competency-code tagging and review workflows that render and export into the EBT Platform.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">A single, <b>versioned, competency-tagged</b> source of training content feeding the platform.</span></div>
+          </div>
+          <div class="case-scale">Markdown + metadata · Git-versioned · competency-tagged</div>
+          <div class="case-chips"><span class="chip">Docs-as-code</span><span class="chip">Markdown</span><span class="chip">Git</span><span class="chip">Schema</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PILLAR 4 -->
+  <section class="pillar">
+    <div class="pillar-head"><span class="pillar-tag" style="color:var(--gold)">04 · NLP &amp; Compliance Automation</span><span class="pillar-rule"></span></div>
+    <div class="case-grid">
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--gold)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Production · internal</div>
+          <div class="case-title">NLP Document Intelligence</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Surfacing topic patterns and unmapped competencies across large training-document corpora by hand is impractical.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">TF-IDF / NLP over A320 OCC and B787 STC documents — topic-frequency analysis, taxonomy building and detection of topics not yet mapped to competencies — output as HTML and Excel analytics.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">Turned dense procedure documents into a <b>structured, queryable competency taxonomy</b>.</span></div>
+          </div>
+          <div class="case-scale">A320 OCC + B787 STC corpora · taxonomy + gap detection</div>
+          <div class="case-chips"><span class="chip">scikit-learn</span><span class="chip">TF-IDF</span><span class="chip">pandas</span><span class="chip">NLP</span></div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-accent" style="background:var(--gold)"></div>
+        <div class="case-body">
+          <div class="case-status"><span class="lock">🔒</span> Production · internal</div>
+          <div class="case-title">GCAA Licensing Dashboard</div>
+          <div class="case-rows">
+            <div class="cr"><span class="crk">Problem</span><span class="crv">Crew-licensing attestation was a manual download-and-track chore prone to expiry gaps.</span></div>
+            <div class="cr"><span class="crk">Approach</span><span class="crv">A Streamlit dashboard + automation toolkit — automated attestation downloads, a SharePoint pipeline, status tracking and PDF report generation; the visual system was reused for IRR/ICAP audit dashboards.</span></div>
+            <div class="cr"><span class="crk">Impact</span><span class="crv">Automated a manual compliance workflow <b>end-to-end</b>, with a reusable audit-grade reporting layer.</span></div>
+          </div>
+          <div class="case-scale">Streamlit · SharePoint automation · PDF reporting</div>
+          <div class="case-chips"><span class="chip">Streamlit</span><span class="chip">Python</span><span class="chip">SharePoint</span><span class="chip">Automation</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer-wrap">
+    <div class="disclaimer">
+      <strong>Confidentiality</strong> — This page reflects professional data-science and engineering work carried out for
+      Etihad Airways pilot training. It presents <strong>methodology and overviews only</strong>: no pilot information,
+      proprietary systems, live links, or training outcome data are shown. Scale figures denote analysis volume, not results.
+      Not affiliated with, or endorsed by, Etihad Airways.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="footer-inner">
+      <div>Built by <em>Cristian Villada</em> · Flight Crew Training Officer (DS) · Etihad Airways · Abu Dhabi</div>
+      <div class="footer-links">
+        <a href="/">← Back to portfolio</a>
+        <a href="mailto:cristian.villadat@gmail.com">Contact</a>
+        <a href="https://www.linkedin.com/in/cristianvillada/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
