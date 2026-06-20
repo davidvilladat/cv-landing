@@ -3,784 +3,465 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cristian Villada</title>
-<meta name="description" content="Aviation data tools and intelligence built for crew. ZED travel, network analysis, and more.">
+<title>Cristian Villada — Aviation · Data · Strategy</title>
+<meta name="description" content="Cristian Villada — Aeronautical engineer and data scientist, Flight Crew Training Officer (DS) at Etihad Airways. Aviation data tools: ZED travel, network intelligence, training, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ───────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════
+   CV Landing — Atmosphere (Lavender / Indigo)
+   Cristian Villada Design System tokens, inlined for a standalone page.
+   ════════════════════════════════════════════════════════════════ */
 :root{
-  --bg-deep:#0a0d12;--bg-panel:#11151c;--bg-card:#161b24;--bg-elev:#1d2330;
-  --line:#232a39;--line-soft:#1a2030;
-  --ink:#e8ecf2;--ink-dim:#8a93a6;--ink-mute:#5a6478;
-  --copper:#d97f4a;--gold:#e8b94a;--teal:#4fb8a8;--crimson:#e54e4e;
-  --purple:#a78bfa;
+  /* Andes Ink (executive base) */
+  --cv-andes-ink:#061826;--cv-andes-ink-700:#0B2335;--cv-andes-ink-800:#061826;--cv-andes-ink-900:#030C13;
+  /* Lavender (the atmosphere accent) */
+  --cv-lavender:#A89BC7;--cv-lavender-50:#FAF8FF;--cv-lavender-100:#EEEAF7;--cv-lavender-200:#DCD5EC;
+  --cv-lavender-300:#C7BCDF;--cv-lavender-400:#B5A9D2;--cv-lavender-500:#A89BC7;--cv-lavender-600:#8E7DB7;
+  --cv-lavender-700:#7463A3;--cv-lavender-800:#574881;--cv-lavender-900:#3D3260;
+  /* Indigo (depth) */
+  --cv-indigo:#1D1A5E;--cv-indigo-200:#C2BFDF;--cv-indigo-300:#9B97C9;--cv-indigo-400:#5D5BAB;
+  --cv-indigo-500:#2D2A8A;--cv-indigo-600:#1D1A5E;--cv-indigo-700:#171551;--cv-indigo-800:#110F3A;--cv-indigo-900:#0A0A23;
+  --cv-lavender-rgb:168,155,199;--cv-indigo-rgb:29,26,94;--cv-andes-ink-rgb:6,24,38;
+  /* Type */
+  --cv-font-display:"Cormorant Garamond","Playfair Display",Georgia,serif;
+  --cv-font-body:"Montserrat","DM Sans",Inter,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --cv-font-mono:"JetBrains Mono",Consolas,monospace;
+  --cv-text-xs:0.75rem;
+  --cv-tracking-wide:0.05em;--cv-tracking-wider:0.08em;--cv-tracking-caps:0.14em;--cv-tracking-label:0.20em;
+  /* Spacing & radius */
+  --cv-space-2:0.5rem;--cv-space-3:0.75rem;--cv-space-5:1.25rem;--cv-space-8:2rem;
+  --cv-radius-sm:0.25rem;--cv-radius-md:0.5rem;--cv-radius-lg:0.75rem;--cv-radius-pill:9999px;
+  /* Effects */
+  --cv-ease:cubic-bezier(0.4,0,0.2,1);--cv-ease-elegant:cubic-bezier(0.16,1,0.3,1);
+  --cv-shadow-lavender:0 10px 34px rgba(168,155,199,0.32);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg-deep);color:var(--ink);font-family:'Inter Tight',sans-serif;
-  -webkit-font-smoothing:antialiased;line-height:1.5;min-height:100vh}
-.shell{max-width:1160px;margin:0 auto;padding:0 32px}
+body{background:var(--cv-andes-ink);color:var(--cv-lavender-50);font-family:var(--cv-font-body);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+::selection{background:rgba(168,155,199,0.34)}
 a{text-decoration:none;color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--cv-font-mono);font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--cv-lavender-300)}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--cv-lavender-400)}
+.motto{font-family:var(--cv-font-display);font-style:italic;font-weight:500;letter-spacing:0.04em;color:var(--cv-lavender-200)}
 
-/* ── NAV ──────────────────────────────────────────────────── */
-nav{
-  border-bottom:1px solid var(--line);
-  background:rgba(10,13,18,0.88);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  position:sticky;top:0;z-index:50
-}
-.nav-inner{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:0 32px;height:56px;max-width:1160px;margin:0 auto
-}
-.nav-logo{
-  font-family:'JetBrains Mono',monospace;font-size:12px;
-  letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-dim)
-}
-.nav-logo span{color:var(--copper)}
-.nav-links{
-  display:flex;gap:28px;font-family:'JetBrains Mono',monospace;
-  font-size:10px;letter-spacing:0.15em;text-transform:uppercase
-}
-.nav-links a{color:var(--ink-mute);transition:color 0.15s}
-.nav-links a:hover{color:var(--copper)}
+/* NAV */
+nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 48px;background:rgba(6,24,38,0.80);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(168,155,199,0.18)}
+.nav-brand{display:flex;align-items:center;gap:13px}
+.nav-brand span{font-family:var(--cv-font-display);font-weight:500;font-size:19px;letter-spacing:0.16em;color:var(--cv-lavender-50)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-link{font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--cv-lavender-400);transition:color .18s var(--cv-ease)}
+.nav-link:hover{color:var(--cv-lavender-200)}
 
-/* ── HERO ─────────────────────────────────────────────────── */
-.hero{
-  padding:96px 0 80px;position:relative;overflow:hidden;
-  border-bottom:1px solid var(--line)
-}
-.hero::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 60% 50% at 5% 5%,  rgba(79,184,168,0.07) 0%,transparent 100%),
-    radial-gradient(ellipse 50% 60% at 95% 95%, rgba(217,127,74,0.07) 0%,transparent 100%)
-}
-.hero::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,0.012) 39px,rgba(255,255,255,0.012) 40px)
-}
-.hero-inner{position:relative;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end}
-.eyebrow{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:0.28em;text-transform:uppercase;color:var(--copper);
-  font-weight:600;margin-bottom:18px
-}
-.hero h1{
-  font-family:'Fraunces',serif;font-weight:700;
-  font-size:clamp(52px,7vw,96px);line-height:0.9;letter-spacing:-0.04em
-}
-.hero h1 em{font-style:italic;color:var(--teal);font-weight:300}
-.hero-sub{
-  font-size:16px;color:var(--ink-dim);max-width:560px;
-  margin-top:26px;line-height:1.72
-}
-.hero-sub strong{color:var(--ink);font-weight:500}
-.hero-meta{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.meta-pill{
-  display:inline-flex;align-items:center;gap:9px;padding:7px 14px;
-  border:1px solid var(--line);background:var(--bg-panel);
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:0.12em;color:var(--ink-mute);white-space:nowrap
-}
-.meta-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.live-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 2.2s infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:var(--cv-space-3) var(--cv-space-8);border-radius:var(--cv-radius-pill);font-family:var(--cv-font-body);font-size:var(--cv-text-xs);font-weight:700;letter-spacing:var(--cv-tracking-caps);text-transform:uppercase;border:1.5px solid transparent;cursor:pointer;transition:background-color .14s var(--cv-ease),border-color .14s var(--cv-ease),color .14s var(--cv-ease),box-shadow .14s var(--cv-ease),transform .14s var(--cv-ease)}
+.btn-sm{min-height:2.25rem;padding:var(--cv-space-2) var(--cv-space-5);font-size:0.68rem}
+.btn-primary{background:linear-gradient(135deg,var(--cv-lavender-200),var(--cv-lavender-400));color:var(--cv-indigo-900);border-color:var(--cv-lavender-300)}
+.btn-primary:hover{box-shadow:var(--cv-shadow-lavender);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--cv-lavender-100);border-color:var(--cv-lavender-700)}
+.btn-secondary:hover{background:rgba(168,155,199,0.14);border-color:var(--cv-lavender-400);color:var(--cv-lavender-50)}
 
-/* ── STAT ROW ─────────────────────────────────────────────── */
-.stat-row{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:var(--bg-panel)
-}
-.stat-cell{padding:20px 24px;border-right:1px solid var(--line)}
-.stat-cell:last-child{border-right:none}
-.stat-n{
-  font-family:'Fraunces',serif;font-size:30px;font-weight:600;
-  line-height:1;letter-spacing:-0.02em;font-style:italic;color:var(--copper)
-}
-.stat-l{
-  margin-top:6px;font-family:'JetBrains Mono',monospace;
-  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute)
-}
+/* HERO + ABOUT */
+.hero{position:relative;display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:start;max-width:1240px;margin:0 auto;padding:84px 48px 76px}
+.hero-glow{position:absolute;inset:-12% -20% auto 22%;height:680px;background:radial-gradient(circle at 64% 26%,rgba(168,155,199,0.26),transparent 56%),radial-gradient(circle at 92% 60%,rgba(45,42,138,0.34),transparent 56%);pointer-events:none;z-index:0}
+.hero>div{position:relative;z-index:1}
+.hero h1{font-family:var(--cv-font-display);font-weight:600;font-size:clamp(42px,4.8vw,64px);line-height:1.1;letter-spacing:0.005em;color:var(--cv-lavender-50);margin:0;padding-bottom:0.1em}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--cv-lavender-300)}
+.hero p{font-size:16px;line-height:1.8;color:var(--cv-lavender-200);max-width:540px}
+.hero p strong{font-weight:600;color:var(--cv-lavender-50)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(168,155,199,0.3);border-radius:var(--cv-radius-sm);color:var(--cv-lavender-200)}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+/* hero right credentials */
+.cred-mono{width:120px;height:120px;display:block;margin:24px auto 18px}
+.cred-rule{height:2px;width:104px;margin:0 auto 18px;background:linear-gradient(90deg,transparent,var(--cv-lavender-300),var(--cv-indigo-400),transparent)}
+.cred-name{font-family:var(--cv-font-display);font-weight:500;font-size:23px;letter-spacing:0.18em;text-align:center;color:var(--cv-lavender-50)}
+.cred-list{margin-top:38px;border-top:1px solid rgba(168,155,199,0.18)}
+.cred{padding:18px 4px;border-bottom:1px solid rgba(168,155,199,0.14)}
+.cred:last-child{border-bottom:none}
+.cred-k{font-family:var(--cv-font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cv-lavender-400);margin-bottom:7px}
+.cred-v{font-size:15px;font-weight:600;color:var(--cv-lavender-50)}
+.cred-s{font-size:13px;color:var(--cv-lavender-300);margin-top:3px;line-height:1.5}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--cv-lavender-300);box-shadow:0 0 9px var(--cv-lavender-400);animation:cv-blink 2.2s infinite;flex-shrink:0}
+@keyframes cv-blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ── ABOUT ────────────────────────────────────────────────── */
-.about{padding:72px 0;border-bottom:1px solid var(--line)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.about-label{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-mute);
-  margin-bottom:20px
-}
-.about-head{
-  font-family:'Fraunces',serif;font-size:36px;font-weight:600;
-  letter-spacing:-0.025em;line-height:1.1;margin-bottom:20px
-}
-.about-head em{font-style:italic;color:var(--copper);font-weight:300}
-.about-body{font-size:15px;color:var(--ink-dim);line-height:1.8;max-width:520px}
-.about-body p+p{margin-top:14px}
-.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.about-tag{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:0.12em;text-transform:uppercase;
-  padding:5px 12px;border:1px solid var(--line);color:var(--ink-mute);
-  background:var(--bg-card)
-}
-.about-right{display:flex;flex-direction:column;gap:16px}
-.info-block{
-  background:var(--bg-card);border:1px solid var(--line);
-  padding:20px 24px
-}
-.info-block-label{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px
-}
-.info-block-val{font-size:14px;color:var(--ink-dim)}
-.info-block-val strong{color:var(--ink);font-weight:500}
+/* STAT BAND */
+.statband{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(168,155,199,0.18);border-bottom:1px solid rgba(168,155,199,0.18);background:var(--cv-indigo-900)}
+.stat{padding:30px 40px;border-right:1px solid rgba(168,155,199,0.16)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--cv-font-display);font-style:italic;font-weight:600;font-size:40px;line-height:1;color:var(--cv-lavender-200)}
+.stat-n span{color:var(--cv-indigo-300)}
+.stat-l{font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cv-lavender-500);margin-top:10px}
 
-/* ── PROJECTS ─────────────────────────────────────────────── */
-.projects{padding:72px 0;border-bottom:1px solid var(--line)}
-.projects-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
-.section-label{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-mute)
-}
-.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+/* SECTIONS */
+.section{max-width:1240px;margin:0 auto;padding:88px 48px}
+.section.tint{max-width:none;background:var(--cv-indigo-900);border-top:1px solid rgba(168,155,199,0.16)}
+.section.tint .inner{max-width:1240px;margin:0 auto}
+.sec-kicker{font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cv-lavender-300);margin-bottom:16px}
+.sec-head{font-family:var(--cv-font-display);font-weight:600;font-size:clamp(30px,4vw,46px);line-height:1.06;color:var(--cv-lavender-50);margin:0 0 14px}
+.sec-head em{font-style:italic;font-weight:500;color:var(--cv-lavender-300)}
+.sec-sub{font-size:15.5px;line-height:1.75;color:var(--cv-lavender-200);max-width:660px;margin:0 0 36px}
 
-/* project card */
-.proj-card{
-  background:var(--bg-card);border:1px solid var(--line);
-  display:flex;flex-direction:column;overflow:hidden;
-  transition:border-color 0.2s,transform 0.18s;
-  position:relative
-}
-.proj-card.live{cursor:pointer}
-.proj-card.live:hover{border-color:var(--copper);transform:translateY(-3px)}
-.proj-card.live:hover .proj-arrow{color:var(--copper)}
-.proj-card.wip{opacity:0.55;cursor:default}
-.proj-accent{height:3px;width:100%}
-.proj-body{padding:30px 28px 24px;flex:1;display:flex;flex-direction:column}
-.proj-status{
-  display:inline-flex;align-items:center;gap:7px;
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px
-}
-.proj-title{
-  font-family:'Fraunces',serif;font-size:26px;font-weight:600;
-  letter-spacing:-0.025em;line-height:1.1;margin-bottom:12px
-}
-.proj-title em{font-style:italic;font-weight:300}
-.proj-desc{font-size:13px;color:var(--ink-dim);line-height:1.7;margin-bottom:22px;flex:1}
-.proj-chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:0.1em;text-transform:uppercase;
-  padding:3px 9px;border:1px solid var(--line);color:var(--ink-mute)
-}
-.proj-footer{
-  padding:14px 28px;border-top:1px solid var(--line-soft);
-  display:flex;justify-content:space-between;align-items:center;
-  background:var(--bg-panel)
-}
-.proj-cta{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:0.14em;text-transform:uppercase;font-weight:700
-}
-.proj-arrow{font-size:16px;transition:color 0.15s;color:var(--ink-mute)}
+/* JOURNEY */
+.jmap{position:relative;background:var(--cv-andes-ink-900);border:1px solid rgba(168,155,199,0.18);border-radius:var(--cv-radius-lg);overflow:hidden;margin-bottom:40px}
+.jmap svg{width:100%;display:block;max-height:320px}
+.jmap-land{fill:#171551;stroke:rgba(168,155,199,0.22);stroke-width:0.8}
+.jmap-arc{fill:none;stroke:rgba(199,188,223,0.5);stroke-width:1.2;stroke-dasharray:3 6}
+.jmap-dot{animation:cvl-mapPulse 2.8s ease-in-out infinite}
+.jmap-ring{fill:none;stroke-width:1;opacity:0;animation:cvl-mapRing 2.8s ease-out infinite}
+.jmap-label{font-family:var(--cv-font-mono);font-size:8px;letter-spacing:0.1em}
+@keyframes cvl-mapPulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes cvl-mapRing{0%{r:5;opacity:.6}100%{r:24;opacity:0}}
+.journey-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.jc{background:var(--cv-indigo-800);border:1px solid rgba(168,155,199,0.18);border-top:3px solid var(--cv-lavender-300);border-radius:var(--cv-radius-md);padding:22px}
+.jc-code{font-family:var(--cv-font-display);font-style:italic;font-weight:700;font-size:30px;line-height:1;color:var(--cv-lavender-300);margin-bottom:8px}
+.jc-city{font-size:14px;font-weight:600;color:var(--cv-lavender-50);margin-bottom:3px}
+.jc-role{font-family:var(--cv-font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cv-lavender-500);margin-bottom:12px}
+.jc-note{font-size:12.5px;line-height:1.65;color:var(--cv-lavender-200)}
 
-/* ── FOOTER ───────────────────────────────────────────────── */
-footer{
-  padding:44px 0 52px;color:var(--ink-mute);
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:0.08em;border-top:1px solid var(--line)
-}
-.footer-inner{
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:16px
-}
-footer em{font-family:'Fraunces',serif;font-style:italic;color:var(--copper)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{color:var(--ink-mute);transition:color 0.15s}
-.footer-links a:hover{color:var(--teal)}
-.footer-note{margin-top:16px;font-size:10px;color:var(--ink-mute);letter-spacing:0.05em;line-height:1.7}
+/* PROJECTS */
+.proj-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.proj-count{font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.1em;color:var(--cv-lavender-500)}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcard{display:flex;flex-direction:column;overflow:hidden;background:var(--cv-indigo-800);border:1px solid rgba(168,155,199,0.2);border-radius:var(--cv-radius-lg);box-shadow:0 6px 20px rgba(3,12,19,0.35);transition:border-color .24s var(--cv-ease),transform .24s var(--cv-ease),box-shadow .24s var(--cv-ease)}
+.pcard:hover{transform:translateY(-4px);border-color:rgba(168,155,199,0.5);box-shadow:0 22px 52px rgba(10,10,35,0.7)}
+.pcard.wip{opacity:.6}
+.pcard.wip:hover{transform:none;border-color:rgba(168,155,199,0.2);box-shadow:0 6px 20px rgba(3,12,19,0.35)}
+.pcard-accent{height:3px;background:linear-gradient(90deg,var(--cv-lavender-300),var(--cv-indigo-400))}
+.pcard-accent.alt{background:linear-gradient(90deg,var(--cv-indigo-300),var(--cv-lavender-500))}
+.pcard-body{padding:26px 26px 16px;flex:1;display:flex;flex-direction:column}
+.pstatus{display:flex;align-items:center;gap:7px;margin-bottom:14px}
+.pstatus .d{width:6px;height:6px;border-radius:50%;background:var(--cv-lavender-300);box-shadow:0 0 7px var(--cv-lavender-400);flex-shrink:0}
+.pstatus.new .d{background:var(--cv-indigo-300);box-shadow:none}
+.pstatus span:last-child{font-family:var(--cv-font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cv-lavender-500)}
+.ptitle{font-family:var(--cv-font-display);font-weight:600;font-size:25px;color:var(--cv-lavender-50);margin-bottom:10px;line-height:1.1}
+.pdesc{font-size:13px;line-height:1.65;color:var(--cv-lavender-200);margin:0 0 18px;flex:1}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--cv-font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(168,155,199,0.26);border-radius:var(--cv-radius-sm);color:var(--cv-lavender-400)}
+.pfoot{padding:13px 26px;border-top:1px solid rgba(168,155,199,0.14);display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,35,0.4)}
+.pcta{font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--cv-lavender-200)}
+.parrow{color:var(--cv-lavender-400);font-size:16px;transition:transform .18s var(--cv-ease)}
+.pcard:hover .parrow{transform:translateX(3px)}
 
-/* ── JOURNEY ─────────────────────────────────────────────── */
-.journey{padding:72px 0;border-bottom:1px solid var(--line)}
-.journey-intro{margin-bottom:36px}
-.journey-head{
-  font-family:'Fraunces',serif;font-size:clamp(28px,4vw,42px);font-weight:600;
-  letter-spacing:-0.025em;line-height:1.1;margin:12px 0 16px
-}
-.journey-head em{font-style:italic;color:var(--teal);font-weight:300}
-.journey-sub{font-size:15px;color:var(--ink-dim);max-width:640px;line-height:1.75}
-.journey-map-wrap{
-  background:#0d1117;border:1px solid var(--line);
-  overflow:hidden;margin-bottom:20px
-}
-.journey-svg{width:100%;display:block;max-height:320px}
-.jmap-land{fill:var(--bg-elev);stroke:rgba(255,255,255,0.07);stroke-width:0.8}
-.jmap-arc{fill:none;stroke:rgba(255,255,255,0.15);stroke-width:1.2;stroke-dasharray:3 6}
-@keyframes mapPulse{0%,100%{opacity:1}50%{opacity:0.5}}
-@keyframes mapRing{0%{r:5;opacity:0.65}100%{r:22;opacity:0}}
-.jmap-dot{animation:mapPulse 2.8s ease-in-out infinite}
-.jmap-ring{fill:none;stroke-width:1;opacity:0;animation:mapRing 2.8s ease-out infinite}
-.jmap-label{
-  font-family:'JetBrains Mono',monospace;font-size:8px;
-  fill:rgba(138,147,166,0.75);letter-spacing:0.1em
-}
-.journey-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.jc{background:var(--bg-card);border:1px solid var(--line);border-top:3px solid;padding:20px 20px 18px}
-.jc-code{
-  font-family:'Fraunces',serif;font-size:26px;font-weight:700;
-  font-style:italic;line-height:1;margin-bottom:8px
-}
-.jc-city{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
-.jc-role{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px
-}
-.jc-note{font-size:12px;color:var(--ink-dim);line-height:1.65}
+/* FOOTER */
+footer{position:relative;overflow:hidden;background:radial-gradient(circle at 84% 0%,rgba(168,155,199,0.22),transparent 50%),linear-gradient(180deg,var(--cv-indigo-900),var(--cv-andes-ink-900));border-top:1px solid rgba(168,155,199,0.18);padding:78px 48px 48px}
+.foot-top{max-width:1240px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.foot-rule{height:2px;width:90px;background:linear-gradient(90deg,var(--cv-lavender-300),var(--cv-indigo-400));margin-bottom:26px}
+.foot-kicker{font-family:var(--cv-font-mono);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--cv-lavender-300);margin-bottom:16px}
+.foot-name{font-family:var(--cv-font-display);font-weight:600;font-size:clamp(32px,4vw,50px);line-height:1.04;color:var(--cv-lavender-50);margin:0}
+.foot-contact{font-family:var(--cv-font-mono);font-size:11px;letter-spacing:0.1em;color:var(--cv-lavender-500);margin-top:14px}
+.foot-actions{display:flex;gap:12px;flex-wrap:wrap}
+.foot-bottom{max-width:1240px;margin:42px auto 0;padding-top:22px;border-top:1px solid rgba(168,155,199,0.18);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.08em;color:var(--cv-lavender-600)}
+.foot-note{max-width:1240px;margin:14px auto 0;font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.05em;line-height:1.7;color:var(--cv-lavender-700)}
 
-/* ── RESPONSIVE ───────────────────────────────────────────── */
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:28px}
-  .hero-meta{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
-  .stat-row{grid-template-columns:repeat(2,1fr)}
-  .stat-cell:nth-child(2){border-right:none}
-  .stat-cell:nth-child(3){border-top:1px solid var(--line)}
-  .stat-cell:nth-child(4){border-top:1px solid var(--line);border-right:none}
-  .about-grid{grid-template-columns:1fr}
-  .project-grid{grid-template-columns:1fr}
+@media(max-width:940px){
+  nav{padding:14px 24px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:56px 24px 60px;gap:40px}
+  .statband{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+  .section{padding:64px 24px}.section.tint{padding:64px 24px}
   .journey-cards{grid-template-columns:repeat(2,1fr)}
-  .footer-inner{flex-direction:column;align-items:flex-start}
+  .projects{grid-template-columns:1fr}
+  .jmap{display:none}
 }
 @media(max-width:560px){
-  .shell{padding:0 20px}
-  .nav-inner{padding:0 20px}
-  .hero{padding:64px 0 56px}
-  .hero h1{font-size:clamp(40px,11vw,64px)}
+  .statband{grid-template-columns:1fr}.stat{border-right:none}
   .journey-cards{grid-template-columns:1fr}
+  .foot-top{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ─────────────────────────────────────────────────── -->
+<!-- ── NAV ─────────────────────────────────────────── -->
 <nav>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo"><span>C</span>RISTIAN · <span>V</span>ILLADA</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#journey">Journey</a>
-      <a href="#projects">Projects</a>
-      <a href="/work.html">Work</a>
-      <a href="mailto:cristian.villadat@gmail.com">Contact</a>
-    </div>
+  <a class="nav-brand" href="/">
+    <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+      <defs><linearGradient id="cvm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCD5EC"/><stop offset="1" stop-color="#5D5BAB"/></linearGradient></defs>
+      <rect x="1" y="1" width="34" height="34" rx="9" fill="none" stroke="url(#cvm)" stroke-width="1.4"/>
+      <text x="18" y="24.5" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="17" font-weight="600" fill="url(#cvm)">CV</text>
+    </svg>
+    <span>CRISTIAN VILLADA</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#journey" class="nav-link">Journey</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="/work.html" class="nav-link">Work</a>
+    <a href="mailto:cristian.villadat@gmail.com" class="btn btn-primary btn-sm">Contact</a>
   </div>
 </nav>
 
-<!-- ── HERO ────────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="shell">
-    <div class="hero-inner">
-      <div>
-        <div class="eyebrow">Aeronautical Engineer · Data Scientist</div>
-        <h1>Personal and Professional Projects<br><em> Bsc Aerospace Engineering</em></h1>
-        <p class="hero-sub">
-          Bridging <strong>flight operations and data science</strong> — from EBT/SBT training analytics and commercial strategy to network intelligence and product development.
-          Based in Abu Dhabi, building tools that put real aviation insight in the hands of the people who need it.
-        </p>
-        <div class="about-tags" style="margin-top:28px">
-          <span class="about-tag">Python · SQL · Databricks</span>
-          <span class="about-tag">Power BI · Tableau</span>
-          <span class="about-tag">EBT / SBT</span>
-          <span class="about-tag">Revenue Management</span>
-          <span class="about-tag">Machine Learning</span>
-          <span class="about-tag">GCP · APIs</span>
-        </div>
+<!-- ── HERO + ABOUT ────────────────────────────────── -->
+<header id="about" class="hero">
+  <div class="hero-glow"></div>
+
+  <!-- LEFT -->
+  <div>
+    <div class="eyebrow" style="margin-bottom:24px">Aviation · Data · Strategy</div>
+    <h1>Where flight operations meet <em>data science.</em></h1>
+    <p style="margin:22px 0 14px">I'm <strong>Cristian Villada</strong> — aeronautical engineer and data scientist, currently Flight Crew Training Officer (DS) at Etihad Airways in Abu Dhabi. I design EBT/SBT digital training programmes, build BI solutions, and develop Python automations across a fleet of 106+ aircraft.</p>
+    <p style="margin:0">Before Etihad I led commercial strategy and pricing at TAAG Angola Airlines — building their Google Cloud data infrastructure from scratch — and worked in ancillary revenue and fuel analytics at Viva Air Colombia.</p>
+    <div class="tags" style="margin-top:26px">
+      <span class="tag">EBT / SBT Analytics</span>
+      <span class="tag">Revenue Management</span>
+      <span class="tag">Network Strategy</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Python · SQL · Databricks</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View the projects</a>
+      <a href="/work.html" class="btn btn-secondary">Professional work →</a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div>
+    <div style="display:flex;align-items:center;gap:8px;justify-content:center">
+      <span class="live-dot"></span>
+      <span style="font-family:var(--cv-font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cv-lavender-300)">Etihad Airways · Abu Dhabi</span>
+    </div>
+    <svg class="cred-mono" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><linearGradient id="cvmb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCD5EC"/><stop offset="0.5" stop-color="#B5A9D2"/><stop offset="1" stop-color="#5D5BAB"/></linearGradient></defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke="url(#cvmb)" stroke-width="1.2" opacity="0.55"/>
+      <path d="M60 14 L60 106 M28 30 Q60 64 92 30" fill="none" stroke="url(#cvmb)" stroke-width="1.4" opacity="0.6"/>
+      <text x="60" y="74" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="46" font-weight="600" fill="url(#cvmb)">CV</text>
+    </svg>
+    <div class="cred-rule"></div>
+    <div class="cred-name">CRISTIAN VILLADA</div>
+    <div class="motto" style="font-size:17px;text-align:center;margin-top:10px">From the Andes to the Arabian Desert</div>
+
+    <div class="cred-list">
+      <div class="cred">
+        <div class="cred-k">Current Role</div>
+        <div class="cred-v">Flight Crew Training Officer — DS</div>
+        <div class="cred-s">Etihad Airways · Abu Dhabi, UAE</div>
       </div>
-      <div class="hero-meta">
-        <div class="meta-pill">
-          <span class="live-dot"></span>
-          <span>Etihad Airways · AUH</span>
-        </div>
-        <div class="meta-pill">
-          <span class="meta-dot" style="background:var(--gold)"></span>
-          <span>8 tools live</span>
-        </div>
-        <div class="meta-pill">
-          <span class="meta-dot" style="background:var(--copper)"></span>
-          <span>BSc Aeronautical Engineering</span>
-        </div>
+      <div class="cred">
+        <div class="cred-k">Education</div>
+        <div class="cred-v">BSc Aeronautical Engineering</div>
+        <div class="cred-s">Pontifical Bolivarian University · Colombia</div>
+      </div>
+      <div class="cred">
+        <div class="cred-k">Languages</div>
+        <div class="cred-v">Spanish · English · Portuguese</div>
+        <div class="cred-s">Native · C1 · B1</div>
+      </div>
+      <div class="cred">
+        <div class="cred-k">Core Stack</div>
+        <div class="cred-s" style="font-size:12.5px;color:var(--cv-lavender-200);margin-top:0">Python · SQL · Databricks · Power BI (DAX) · Tableau · LlamaIndex / RAG · GCP · Navitaire · Amadeus · Lean Six Sigma</div>
       </div>
     </div>
   </div>
+</header>
+
+<!-- ── STAT BAND ───────────────────────────────────── -->
+<section class="statband">
+  <div class="stat"><div class="stat-n">106<span>+</span></div><div class="stat-l">Aircraft fleet supported</div></div>
+  <div class="stat"><div class="stat-n">8</div><div class="stat-l">Tools deployed live</div></div>
+  <div class="stat"><div class="stat-n">218</div><div class="stat-l">ZED agreements mapped</div></div>
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Languages spoken</div></div>
 </section>
 
-<!-- ── STATS ────────────────────────────────────────────────── -->
-<div class="stat-row">
-  <div class="stat-cell">
-    <div class="stat-n">4+</div>
-    <div class="stat-l">Years in aviation data</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">3</div>
-    <div class="stat-l">Languages</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">8</div>
-    <div class="stat-l">Tools deployed</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">BSc</div>
-    <div class="stat-l">Aeronautical Engineering</div>
-  </div>
-</div>
+<!-- ── JOURNEY ─────────────────────────────────────── -->
+<section id="journey" class="section tint">
+  <div class="inner">
+    <div class="sec-kicker">Journey</div>
+    <h2 class="sec-head">Three continents. <em>One thread.</em></h2>
+    <p class="sec-sub">Aviation took me from the Andes to the Angolan coast to the Gulf — each move adding operational context, commercial depth, and technical capability.</p>
 
-<!-- ── ABOUT ────────────────────────────────────────────────── -->
-<section class="about" id="about">
-  <div class="shell">
-    <div class="about-grid">
-      <div>
-        <div class="about-label">About</div>
-        <h2 class="about-head">Aeronautical Engineer<br>&amp; <em>Data Scientist.</em></h2>
-        <div class="about-body">
-          <p>
-            I'm <strong>Cristian Villada</strong> — Aeronautical Engineer and Data Scientist currently serving as
-            <strong>Flight Crew Training Officer (DS)</strong> at Etihad Airways in Abu Dhabi.
-            I design EBT/SBT digital training programmes, build BI solutions, and develop Python automations
-            across a fleet of over 106 aircraft.
-          </p>
-          <p>
-            Before Etihad I led commercial strategy and pricing at TAAG Angola Airlines —
-            building their Google Cloud data infrastructure and BI framework from scratch —
-            and worked in ancillary revenue and fuel analytics at Viva Air Colombia.
-          </p>
-          <p>
-            My work sits at the intersection of <strong>flight operations, commercial intelligence,
-            and applied machine learning</strong>. The tools on this site are side projects
-            that turn that expertise into something tangible and useful for the wider aviation community.
-          </p>
-        </div>
-        <div class="about-tags">
-          <span class="about-tag">EBT / SBT Training Analytics</span>
-          <span class="about-tag">Revenue Management</span>
-          <span class="about-tag">Network &amp; Commercial Strategy</span>
-          <span class="about-tag">Business Intelligence</span>
-          <span class="about-tag">Machine Learning</span>
-          <span class="about-tag">Flight Operations</span>
-          <span class="about-tag">Product Development</span>
-        </div>
-        <a href="/work.html" style="display:inline-flex;align-items:center;gap:9px;margin-top:28px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--purple);border:1px solid var(--line);background:var(--bg-card);padding:12px 20px;transition:border-color 0.15s,transform 0.15s" onmouseover="this.style.borderColor='var(--purple)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--line)';this.style.transform='translateY(0)'">Professional work at Etihad Pilot Training →</a>
-      </div>
-      <div class="about-right">
-        <div class="info-block">
-          <div class="info-block-label">Current Role</div>
-          <div class="info-block-val"><strong>Flight Crew Training Officer – DS</strong><br>Etihad Airways · Abu Dhabi, UAE</div>
-        </div>
-        <div class="info-block">
-          <div class="info-block-label">Education</div>
-          <div class="info-block-val"><strong>BSc Aeronautical Engineering</strong><br>Pontifical Bolivarian University · Colombia</div>
-        </div>
-        <div class="info-block">
-          <div class="info-block-label">Languages</div>
-          <div class="info-block-val">
-            <strong>Spanish</strong> — native &nbsp;·&nbsp;
-            <strong>English</strong> — C1 &nbsp;·&nbsp;
-            <strong>Portuguese</strong> — B1
-          </div>
-        </div>
-        <div class="info-block">
-          <div class="info-block-label">Core Stack</div>
-          <div class="info-block-val" style="font-size:12px;line-height:1.8">
-            Python · SQL · Databricks · Power BI (DAX) · Tableau ·
-            LlamaIndex / RAG · GCP · PowerApps · Power Automate ·
-            Navitaire · Amadeus · Lean Six Sigma
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── JOURNEY ───────────────────────────────────────────────── -->
-<section class="journey" id="journey">
-  <div class="shell">
-    <div class="journey-intro">
-      <div class="section-label">Journey</div>
-      <h2 class="journey-head">Three continents.<br><em>One thread.</em></h2>
-      <p class="journey-sub">Aviation took me from the Andes to the Angolan coast to the Gulf — each move adding a new layer of operational context, commercial depth, and technical capability.</p>
-    </div>
-
-    <div class="journey-map-wrap">
-      <svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" class="journey-svg">
-        <!-- ocean fill -->
-        <rect width="960" height="380" fill="#0d1117"/>
-        <!-- equator / prime meridian guides -->
-        <line x1="0" y1="228" x2="960" y2="228" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-        <line x1="533" y1="0" x2="533" y2="380" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-
-        <!-- South America -->
+    <div class="jmap">
+      <svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg">
+        <rect width="960" height="380" fill="#0A0A23"/>
+        <line x1="0" y1="228" x2="960" y2="228" stroke="rgba(168,155,199,0.06)"/>
+        <line x1="533" y1="0" x2="533" y2="380" stroke="rgba(168,155,199,0.06)"/>
         <path class="jmap-land" d="M 133,198 L 150,190 L 178,188 L 203,195 L 228,204 L 250,211 L 268,215 L 347,228 L 342,252 L 326,278 L 312,295 L 270,320 L 225,331 L 206,360 L 185,380 L 156,380 L 140,355 L 123,310 L 105,264 L 108,235 L 116,218 L 115,205 Z"/>
-
-        <!-- Africa -->
         <path class="jmap-land" d="M 496,125 L 443,182 L 420,198 L 408,210 L 418,215 L 455,215 L 512,213 L 549,210 L 575,213 L 582,228 L 590,242 L 603,255 L 609,278 L 620,310 L 629,331 L 654,333 L 683,320 L 720,307 L 736,280 L 748,249 L 740,234 L 736,224 L 760,191 L 773,195 L 765,178 L 746,158 L 720,138 L 693,134 L 648,128 L 620,119 L 588,115 L 520,112 Z"/>
-
-        <!-- Arabian Peninsula -->
         <path class="jmap-land" d="M 746,158 L 763,140 L 775,130 L 806,132 L 840,148 L 862,166 L 849,183 L 836,196 L 809,206 L 794,198 L 773,195 L 760,191 L 748,175 Z"/>
-
-        <!-- Mediterranean / S Europe sliver -->
-        <path class="jmap-land" d="M 496,125 L 510,108 L 545,98 L 576,94 L 610,90 L 642,88 L 667,95 L 693,100 L 720,100 L 732,110 L 720,120 L 693,134 L 648,128 L 620,119 L 588,115 L 520,112 Z"/>
-
-        <!-- Flight arcs -->
         <path class="jmap-arc" d="M 133,209 Q 240,110 603,255"/>
         <path class="jmap-arc" d="M 603,255 Q 644,270 683,307"/>
         <path class="jmap-arc" d="M 683,307 Q 770,210 823,154"/>
-
-        <!-- CO — Medellín -->
-        <circle class="jmap-ring" cx="133" cy="209" r="5" stroke="#4fb8a8" style="animation-delay:0s"/>
-        <circle class="jmap-dot" cx="133" cy="209" r="4.5" fill="#4fb8a8" style="animation-delay:0s"/>
-        <text class="jmap-label" x="133" y="197" text-anchor="middle">MDE</text>
-
-        <!-- AO — Luanda -->
-        <circle class="jmap-ring" cx="603" cy="255" r="5" stroke="#d97f4a" style="animation-delay:0.7s"/>
-        <circle class="jmap-dot" cx="603" cy="255" r="4.5" fill="#d97f4a" style="animation-delay:0.7s"/>
-        <text class="jmap-label" x="603" y="243" text-anchor="middle">LUA</text>
-
-        <!-- SA — Johannesburg -->
-        <circle class="jmap-ring" cx="683" cy="307" r="5" stroke="#e8b94a" style="animation-delay:1.4s"/>
-        <circle class="jmap-dot" cx="683" cy="307" r="4.5" fill="#e8b94a" style="animation-delay:1.4s"/>
-        <text class="jmap-label" x="683" y="295" text-anchor="middle">JNB</text>
-
-        <!-- AE — Abu Dhabi -->
-        <circle class="jmap-ring" cx="823" cy="154" r="5" stroke="#a78bfa" style="animation-delay:2.1s"/>
-        <circle class="jmap-dot" cx="823" cy="154" r="4.5" fill="#a78bfa" style="animation-delay:2.1s"/>
-        <text class="jmap-label" x="823" y="142" text-anchor="middle">AUH</text>
+        <circle class="jmap-ring" cx="133" cy="209" r="5" stroke="#C7BCDF"/>
+        <circle class="jmap-dot" cx="133" cy="209" r="4.5" fill="#C7BCDF"/>
+        <text class="jmap-label" x="133" y="197" text-anchor="middle" fill="rgba(199,188,223,0.85)">MDE</text>
+        <circle class="jmap-ring" cx="603" cy="255" r="5" stroke="#B5A9D2" style="animation-delay:.7s"/>
+        <circle class="jmap-dot" cx="603" cy="255" r="4.5" fill="#B5A9D2" style="animation-delay:.7s"/>
+        <text class="jmap-label" x="603" y="243" text-anchor="middle" fill="rgba(199,188,223,0.85)">LUA</text>
+        <circle class="jmap-ring" cx="683" cy="307" r="5" stroke="#5D5BAB" style="animation-delay:1.4s"/>
+        <circle class="jmap-dot" cx="683" cy="307" r="4.5" fill="#5D5BAB" style="animation-delay:1.4s"/>
+        <text class="jmap-label" x="683" y="295" text-anchor="middle" fill="rgba(199,188,223,0.85)">JNB</text>
+        <circle class="jmap-ring" cx="823" cy="154" r="5" stroke="#DCD5EC" style="animation-delay:2.1s"/>
+        <circle class="jmap-dot" cx="823" cy="154" r="5" fill="#DCD5EC" style="animation-delay:2.1s"/>
+        <text class="jmap-label" x="823" y="142" text-anchor="middle" fill="rgba(220,213,236,0.95)">AUH</text>
       </svg>
     </div>
 
     <div class="journey-cards">
-      <div class="jc" style="border-top-color:var(--teal)">
-        <div class="jc-code" style="color:var(--teal)">CO</div>
+      <div class="jc" style="border-top-color:var(--cv-lavender-300)">
+        <div class="jc-code" style="color:var(--cv-lavender-300)">CO</div>
         <div class="jc-city">Medellín, Colombia</div>
-        <div class="jc-role">Viva Air · Ancillary &amp; Fuel Analytics</div>
-        <div class="jc-note">Where the data career started — pricing models, ancillary strategy, and fuel analytics for a fast-growing ULCC expanding across Latin America.</div>
+        <div class="jc-role">Viva Air · Ancillary &amp; Fuel</div>
+        <div class="jc-note">Where the data career started — pricing models, ancillary strategy, and fuel analytics for a fast-growing ULCC.</div>
       </div>
-      <div class="jc" style="border-top-color:var(--copper)">
-        <div class="jc-code" style="color:var(--copper)">AO</div>
+      <div class="jc" style="border-top-color:var(--cv-lavender-500)">
+        <div class="jc-code" style="color:var(--cv-lavender-400)">AO</div>
         <div class="jc-city">Luanda, Angola</div>
-        <div class="jc-role">TAAG Angola Airlines · Commercial Strategy</div>
-        <div class="jc-note">Built the GCP data infrastructure and BI framework from scratch. Led revenue management and pricing across TAAG's pan-African network.</div>
+        <div class="jc-role">TAAG · Commercial Strategy</div>
+        <div class="jc-note">Built the GCP data infrastructure and BI framework from scratch. Led revenue management across the network.</div>
       </div>
-      <div class="jc" style="border-top-color:var(--gold)">
-        <div class="jc-code" style="color:var(--gold)">SA</div>
-        <div class="jc-city">Johannesburg, South Africa</div>
-        <div class="jc-role">TAAG · Southern Africa network</div>
-        <div class="jc-note">Regional coverage spanning TAAG's Southern Africa routes — JNB as the anchor market for the airline's cross-continental commercial push.</div>
+      <div class="jc" style="border-top-color:var(--cv-indigo-400)">
+        <div class="jc-code" style="color:var(--cv-indigo-300)">SA</div>
+        <div class="jc-city">Johannesburg, SA</div>
+        <div class="jc-role">TAAG · Southern Africa</div>
+        <div class="jc-note">Anchor market for the airline's cross-continental commercial push across Southern Africa.</div>
       </div>
-      <div class="jc" style="border-top-color:var(--purple)">
-        <div class="jc-code" style="color:var(--purple)">AE</div>
+      <div class="jc" style="border-top-color:var(--cv-lavender-200)">
+        <div class="jc-code" style="color:var(--cv-lavender-200)">AE</div>
         <div class="jc-city">Abu Dhabi, UAE</div>
-        <div class="jc-role">Etihad Airways · Flight Crew Training (DS)</div>
-        <div class="jc-note">Designing EBT/SBT digital programmes and building BI and Python automation tools across a fleet of 106+ aircraft.</div>
+        <div class="jc-role">Etihad · Flight Crew Training</div>
+        <div class="jc-note">Designing EBT/SBT programmes and BI + Python automation across a fleet of 106+ aircraft.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── PROJECTS ─────────────────────────────────────────────── -->
-<section class="projects" id="projects">
-  <div class="shell">
-    <div class="projects-header">
-      <div class="section-label">Projects</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:0.1em">8 live · 1 in development</div>
+<!-- ── PROJECTS ────────────────────────────────────── -->
+<section id="projects" class="section">
+  <div class="proj-head">
+    <div>
+      <div class="sec-kicker">Selected Work</div>
+      <h2 class="sec-head" style="font-size:40px">Tools, in the right hands.</h2>
     </div>
+    <span class="proj-count">8 live · 1 in development</span>
+  </div>
 
-    <div class="project-grid">
+  <div class="projects">
 
-      <!-- ZED Atlas -->
-      <a class="proj-card live" href="https://network.cristianvillada.com/zed-atlas.html">
-        <div class="proj-accent" style="background:linear-gradient(90deg,var(--teal),var(--copper))"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:var(--teal)">
-            <span class="live-dot"></span>
-            Live · Updated May 2026
-          </div>
-          <div class="proj-title">ZED Atlas <em> only for Etihad Airways authorized users</em></div>
-          <p class="proj-desc">
-            218 ZED agreements with the full fare matrix — SSC, ZEP, ZES, TC across Subload and Firm,
-            Economy and Business. Interactive world map with 6 view modes, scenario builder,
-            airline deep-dive with FR24 routes and fleet data for 58 carriers,
-            plus a coverage-gap view. One-click CSV and JSON export.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">218 airlines</span>
-            <span class="chip">506 airports</span>
-            <span class="chip">World map</span>
-            <span class="chip">Scenario builder</span>
-            <span class="chip">FR24 data</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:var(--teal)">Open ZED Atlas</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Spotify Visualizer -->
-      <a class="proj-card live" href="https://spotify.cristianvillada.com">
-        <div class="proj-accent" style="background:linear-gradient(90deg,#1db954,#191414,#1db954)"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:#1db954">
-            <span class="live-dot" style="background:#1db954"></span>
-            Live · WebGL · Spotify API
-          </div>
-          <div class="proj-title">Spotify <em>Visualizer.</em></div>
-          <p class="proj-desc">
-            Real-time music visualizer that connects to your Spotify account and renders
-            live audio-reactive WebGL scenes — fluid simulation, electric lightning,
-            particle trails, neon rings, and more. Six renderer modes driven by beat
-            detection and frequency analysis via the Spotify Web API.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">WebGL / Three.js</span>
-            <span class="chip">Spotify API</span>
-            <span class="chip">GLSL shaders</span>
-            <span class="chip">Beat detection</span>
-            <span class="chip">React</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:#1db954">Open Visualizer</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Network Analysis Hub -->
-      <a class="proj-card live" href="https://network.cristianvillada.com">
-        <div class="proj-accent" style="background:linear-gradient(90deg,var(--teal),var(--copper),#e84040,#3db858)"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:var(--teal)">
-            <span class="live-dot"></span>
-            Live · Cirium Q4 2025 vs Q4 2026 · 4 airlines
-          </div>
-          <div class="proj-title">Network <em>Analysis.</em></div>
-          <p class="proj-desc">
-            30-carrier capacity scatter matrix plus deep-dive profiles for EY, QR, EK and ET —
-            each built from Cirium schedule data (Q4 2025 vs Q4 2026). Route growth, pullbacks,
-            new city launches, exits, and fleet mix shifts. EY also includes a live FR24 snapshot
-            with 44 flights airborne and per-route aircraft intelligence.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">EY · QR · EK · ET</span>
-            <span class="chip">Cirium Q4 26</span>
-            <span class="chip">30-carrier scatter</span>
-            <span class="chip">FR24 live</span>
-            <span class="chip">Fleet mix</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:var(--teal)">Open Network Hub</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Etihad OTP Pilot App -->
-      <a class="proj-card live" href="https://otp.cristianvillada.com">
-        <div class="proj-accent" style="background:linear-gradient(90deg,var(--purple),#60a5fa)"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:var(--purple)">
-            <span class="live-dot" style="background:var(--purple)"></span>
-            Live · May 2026
-          </div>
-          <div class="proj-title">OTP Pilot <em>App.</em></div>
-          <p class="proj-desc">
-            Progressive web app for tracking pre-departure milestones and on-time performance.
-            In-app alerts, background push notifications via Upstash QStash, and a
-            service worker for offline capability. Built for Etihad pilots and crew
-            operating in fast-paced turnaround environments.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">React PWA</span>
-            <span class="chip">Push notifications</span>
-            <span class="chip">OTP milestones</span>
-            <span class="chip">Offline-ready</span>
-            <span class="chip">Vercel</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:var(--purple)">Open OTP App</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Altair Pilot Logbook -->
-      <a class="proj-card live" href="https://altairaero.com" target="_blank" rel="noopener">
-        <div class="proj-accent" style="background:linear-gradient(90deg,var(--gold),var(--copper))"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:var(--gold)">
-            <span class="live-dot" style="background:var(--gold)"></span>
-            Live · altairaero.com
-          </div>
-          <div class="proj-title">Altair <em>Pilot Logbook.</em></div>
-          <p class="proj-desc">
-            Digital pilot logbook built for professional aviators — log flights, track hours
-            by aircraft type, monitor currency and recency requirements, and maintain
-            a complete aeronautical record compliant with regulatory standards.
-            Clean, fast, and designed for cockpit professionals.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">Pilot logbook</span>
-            <span class="chip">Flight hours</span>
-            <span class="chip">Currency tracking</span>
-            <span class="chip">Regulatory</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:var(--gold)">Open Logbook</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Aerospace Learning -->
-      <a class="proj-card live" href="https://aerospace.cristianvillada.com" target="_blank" rel="noopener">
-        <div class="proj-accent" style="background:linear-gradient(90deg,#64b5e8,var(--teal))"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:#64b5e8">
-            <span class="live-dot" style="background:#64b5e8"></span>
-            New · Blueprint Gallery
-          </div>
-          <div class="proj-title">Aerospace <em>Learning.</em></div>
-          <p class="proj-desc">
-            Technical blueprint gallery — Airbus A380-800 and A350 XWB.
-            Structural analysis, aerodynamics, composite systems and general arrangement
-            drawings rendered in full engineering-documentation style with
-            interactive lightbox and category filtering.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">A380-800</span>
-            <span class="chip">A350 XWB</span>
-            <span class="chip">12 blueprints</span>
-            <span class="chip">Structural</span>
-            <span class="chip">Aerodynamics</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:#64b5e8">Open Gallery</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Airlines BI -->
-      <a class="proj-card live" href="https://github.com/davidvilladat/Power-BI-dashboards-airlines/tree/main" target="_blank" rel="noopener">
-        <div class="proj-accent" style="background:linear-gradient(90deg,#60a5fa,var(--teal))"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:#60a5fa">
-            <span class="live-dot" style="background:#60a5fa"></span>
-            Open Source · GitHub
-          </div>
-          <div class="proj-title">Airlines <em>Business Intelligence.</em></div>
-          <p class="proj-desc">
-            Power BI dashboard suite for airline commercial analytics — revenue management,
-            network performance, load factors, and schedule efficiency.
-            Built with DAX and aviation-specific data models drawing on experience
-            across TAAG and Etihad commercial teams.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">Power BI</span>
-            <span class="chip">DAX</span>
-            <span class="chip">Revenue management</span>
-            <span class="chip">Network analytics</span>
-            <span class="chip">Open source</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:#60a5fa">View on GitHub</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- ATC+ Clear2Speak -->
-      <a class="proj-card live" href="https://atc.cristianvillada.com">
-        <div class="proj-accent" style="background:linear-gradient(90deg,#4ade80,#16a34a)"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:#4ade80">
-            <span class="live-dot" style="background:#4ade80"></span>
-            Live · Voice AI + ICAO grading
-          </div>
-          <div class="proj-title">ATC+ <em>Clear2Speak.</em></div>
-          <p class="proj-desc">
-            A real-time, voice-driven radiotelephony trainer. Hold push-to-talk, transmit
-            your readback to an AI air-traffic controller, and get instant ICAO-phraseology
-            scoring over a VHF radio effect. Multi-phase scenarios advance only when you read
-            back hand-offs correctly — with deterministic safety gates on frequency, QNH,
-            squawk and runway, including full Etihad EBT line scenarios.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">Real-time voice AI</span>
-            <span class="chip">ICAO phraseology</span>
-            <span class="chip">Live grading</span>
-            <span class="chip">Safety-slot gates</span>
-            <span class="chip">EBT scenarios</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:#4ade80">Open ATC+ Trainer</span>
-          <span class="proj-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Placeholder -->
-      <div class="proj-card wip">
-        <div class="proj-accent" style="background:linear-gradient(90deg,var(--gold),var(--teal))"></div>
-        <div class="proj-body">
-          <div class="proj-status" style="color:var(--ink-mute)">
-            <span class="meta-dot" style="background:var(--ink-mute)"></span>
-            In Development
-          </div>
-          <div class="proj-title">Layover <em>Intelligence.</em></div>
-          <p class="proj-desc">
-            Per-city layover guide — hotel tier, transport cost, must-do attractions,
-            currency and tips, local crew recommendations, and best ZED routing
-            for onward travel from each EY outstation.
-          </p>
-          <div class="proj-chips">
-            <span class="chip">Layovers</span>
-            <span class="chip">Crew guides</span>
-            <span class="chip">ZED routing</span>
-          </div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-cta" style="color:var(--ink-mute)">Coming Soon</span>
-          <span class="proj-arrow" style="color:var(--ink-mute)">—</span>
-        </div>
+    <a class="pcard" href="https://network.cristianvillada.com/zed-atlas.html">
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d"></span><span>Live · Updated Jun 2026</span></div>
+        <div class="ptitle">ZED Atlas</div>
+        <p class="pdesc">All 218 ZED agreements with the full fare matrix and an interactive world map across six view modes — plus FR24 route depth and a coverage-gap view. Etihad-authorized users.</p>
+        <div class="chips"><span class="chip">218 agreements</span><span class="chip">194 FR24 networks</span><span class="chip">1,103 airports</span></div>
       </div>
+      <div class="pfoot"><span class="pcta">Open ZED Atlas</span><span class="parrow">→</span></div>
+    </a>
 
+    <a class="pcard" href="https://network.cristianvillada.com">
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d"></span><span>Live · Cirium Q4 · 4 airlines</span></div>
+        <div class="ptitle">Network Analysis</div>
+        <p class="pdesc">A 30-carrier capacity matrix plus Cirium deep-dives for EY, QR, EK and ET — growth, exits and fleet shifts — and the new "Biggest Summer Ever" Etihad schedule analysis.</p>
+        <div class="chips"><span class="chip">30 carriers</span><span class="chip">Cirium Q4</span><span class="chip">FR24 live</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">Open Network Hub</span><span class="parrow">→</span></div>
+    </a>
+
+    <a class="pcard" href="https://atc.cristianvillada.com">
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d"></span><span>Live · Voice AI + ICAO</span></div>
+        <div class="ptitle">ATC+ Clear2Speak</div>
+        <p class="pdesc">A real-time, voice-driven radiotelephony trainer — transmit your readback to an AI controller and get instant ICAO-phraseology scoring, with safety gates on frequency, QNH, squawk and runway.</p>
+        <div class="chips"><span class="chip">Voice AI</span><span class="chip">ICAO grading</span><span class="chip">EBT scenarios</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">Open ATC+ Trainer</span><span class="parrow">→</span></div>
+    </a>
+
+    <a class="pcard" href="https://altairaero.com" target="_blank" rel="noopener">
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d"></span><span>Live · altairaero.com</span></div>
+        <div class="ptitle">Altair Pilot Logbook</div>
+        <p class="pdesc">A GCAA/EASA-aware digital pilot logbook — log flights, track hours by type, monitor currency and FTL limits, and export a compliant aeronautical record. Built for cockpit professionals.</p>
+        <div class="chips"><span class="chip">Pilot logbook</span><span class="chip">FTL limits</span><span class="chip">Currency</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">Open Logbook</span><span class="parrow">→</span></div>
+    </a>
+
+    <a class="pcard" href="https://otp.cristianvillada.com">
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d"></span><span>Live · React PWA</span></div>
+        <div class="ptitle">OTP Pilot App</div>
+        <p class="pdesc">A progressive web app for pre-departure milestones and on-time performance — in-app alerts, background push via Upstash QStash, and a service worker for offline capability.</p>
+        <div class="chips"><span class="chip">React PWA</span><span class="chip">Push alerts</span><span class="chip">Offline-ready</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">Open OTP App</span><span class="parrow">→</span></div>
+    </a>
+
+    <a class="pcard" href="https://spotify.cristianvillada.com">
+      <div class="pcard-accent alt"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d"></span><span>Live · WebGL · Spotify API</span></div>
+        <div class="ptitle">Spotify Visualizer</div>
+        <p class="pdesc">A real-time, audio-reactive WebGL visualizer for your Spotify account — fluid simulation, lightning, particle trails and neon rings across six renderer modes driven by beat detection.</p>
+        <div class="chips"><span class="chip">WebGL / Three.js</span><span class="chip">GLSL shaders</span><span class="chip">Beat detection</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">Open Visualizer</span><span class="parrow">→</span></div>
+    </a>
+
+    <a class="pcard" href="https://aerospace.cristianvillada.com" target="_blank" rel="noopener">
+      <div class="pcard-accent alt"></div>
+      <div class="pcard-body">
+        <div class="pstatus new"><span class="d"></span><span>New · Blueprint Gallery</span></div>
+        <div class="ptitle">Aerospace Learning</div>
+        <p class="pdesc">A technical blueprint gallery — Airbus A380-800 and A350 XWB structural, aerodynamic and composite drawings in full engineering-documentation style, with lightbox and category filtering.</p>
+        <div class="chips"><span class="chip">A380-800</span><span class="chip">A350 XWB</span><span class="chip">12 blueprints</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">Open Gallery</span><span class="parrow">→</span></div>
+    </a>
+
+    <a class="pcard" href="https://github.com/davidvilladat/Power-BI-dashboards-airlines/tree/main" target="_blank" rel="noopener">
+      <div class="pcard-accent alt"></div>
+      <div class="pcard-body">
+        <div class="pstatus new"><span class="d"></span><span>Open Source · GitHub</span></div>
+        <div class="ptitle">Airlines BI</div>
+        <p class="pdesc">A Power BI dashboard suite for airline commercial analytics — revenue management, network performance, load factors and schedule efficiency, built with DAX and aviation data models.</p>
+        <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Open source</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta">View on GitHub</span><span class="parrow">→</span></div>
+    </a>
+
+    <div class="pcard wip">
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pstatus"><span class="d" style="background:var(--cv-lavender-600);box-shadow:none"></span><span>In development</span></div>
+        <div class="ptitle">Layover Intelligence</div>
+        <p class="pdesc">A per-city layover guide — hotel tier, transport cost, must-do attractions, currency tips, crew recommendations, and best ZED routing for onward travel from each EY outstation.</p>
+        <div class="chips"><span class="chip">Layovers</span><span class="chip">Crew guides</span><span class="chip">ZED routing</span></div>
+      </div>
+      <div class="pfoot"><span class="pcta" style="color:var(--cv-lavender-500)">Coming soon</span><span class="parrow" style="color:var(--cv-lavender-600)">—</span></div>
     </div>
+
   </div>
 </section>
 
-<!-- ── FOOTER ────────────────────────────────────────────────── -->
-<footer>
-  <div class="shell">
-    <div class="footer-inner">
-      <div>
-        Built by <em>Cristian Villada</em> · Etihad Airways  · Abu Dhabi
-      </div>
-      <div class="footer-links">
-        <a href="mailto:cristian.villadat@gmail.com">cristian.villadat@gmail.com</a>
-        <a href="https://github.com/davidvilladat" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/cristianvillada/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
+<!-- ── CONTACT / FOOTER ────────────────────────────── -->
+<footer id="contact">
+  <div class="foot-top">
+    <div>
+      <div class="foot-rule"></div>
+      <div class="foot-kicker">Let's talk aviation &amp; data</div>
+      <h2 class="foot-name">Cristian Villada</h2>
+      <div class="motto" style="font-size:18px;margin-top:10px">From the Andes to the Arabian Desert</div>
+      <div class="foot-contact">cristian.villadat@gmail.com · Abu Dhabi, UAE</div>
     </div>
-    <div class="footer-note">
-      For projects reference only.
-      Data sourced from Cirium, FlightRadar24, and published ZED fare matrices. Not affiliated with Etihad Airways.
+    <div class="foot-actions">
+      <a href="mailto:cristian.villadat@gmail.com" class="btn btn-primary">Email Cristian</a>
+      <a href="https://www.linkedin.com/in/cristianvillada/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+      <a href="https://github.com/davidvilladat" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
     </div>
   </div>
+  <div class="foot-bottom">
+    <span>Aviation · Data · Strategy</span>
+    <span>Built by Cristian Villada · Etihad Airways · Abu Dhabi</span>
+  </div>
+  <div class="foot-note">For projects reference only. Data sourced from Cirium, FlightRadar24, and published ZED fare matrices. Not affiliated with Etihad Airways.</div>
 </footer>
 
 </body>
